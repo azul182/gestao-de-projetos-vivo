@@ -1,0 +1,79 @@
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+label {
+  color: #660099; /* Roxo Vivo */
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  display: block;
+}
+
+select,
+input[type="number"] {
+  width: 220px;
+  padding: 10px 12px;
+  border: 2px solid #d8c3ff;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.95rem;
+  background-color: #fff;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+select:focus,
+input[type="number"]:focus {
+  border-color: #660099;
+  box-shadow: 0 0 0 3px rgba(102, 0, 153, 0.15);
+}
+
+button {
+  background-color: #660099;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+
+button:hover {
+  background-color: #4d007a;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* Card visual opcional (para harmonizar com os outros section-cards) */
+form {
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  select,
+  input[type="number"] {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+}

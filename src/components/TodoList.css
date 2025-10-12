@@ -1,0 +1,67 @@
+.todo-container {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  margin: 20px auto;
+  width: 95%;
+  max-width: 1200px;
+  overflow-x: auto;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  text-align: left;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.styled-table thead tr {
+  background-color: #660099; /* Roxo Vivo */
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 14px 16px;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #e6e6e6;
+  transition: background-color 0.2s ease;
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #faf7ff; /* roxo bem clarinho */
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f0e6ff; /* destaque suave */
+}
+
+.styled-table td {
+  color: #333333;
+}
+
+.styled-table td:first-letter {
+  text-transform: uppercase;
+}
+
+/* Cabeçalho fixo opcional */
+.todo-container table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .styled-table th, .styled-table td {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+}
