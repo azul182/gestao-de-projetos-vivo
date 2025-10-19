@@ -10,6 +10,8 @@ function Table({ data }) {
                 <th>UFSIGLA</th>
                 <th>MUNICIPIO</th>
                 <th>TOPOLOGIA</th>
+                <th>TIPO_TRANSMISSAO</th>
+                <th>Projetista</th>
               </tr>
             </thead>
             <tbody>
@@ -19,6 +21,8 @@ function Table({ data }) {
                     <td>{item["UFSIGLA"]}</td>
                     <td>{item["MUNICIPIO"]}</td>
                     <td>{item["TOPOLOGIA"]}</td>
+                    <td>{item["TIPO_TRANSMISSAO"]}</td>
+                    {item["projetista"] == null ? "" : <td>{item["projetista"]}</td>}
                   </tr>
                 ))}
             </tbody>

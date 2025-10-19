@@ -1,0 +1,16 @@
+usuarios - feito
+rotas no site - feito
+login - feito
+percitenscia de ususarios - feito
+banco de dados - feito
+tipos de usuarios - feito
+mandar email para colaborador responsavel e coordenador 
+status da tarefa
+-----------------------
+colaborador - 
+ver somente tarefas no seu nome - feito
+
+coordenador - 
+ver todas terefas com quem vai fazer - feito
+pode ver todos sites sem projeto - feito
+

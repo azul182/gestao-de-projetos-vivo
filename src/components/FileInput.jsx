@@ -1,7 +1,7 @@
 import * as XLSX from "xlsx";
 import "./FileInput.css";
 
-function FileInput({ setData }) {
+function FileInput( ) {
   const handleFileSubmit = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -23,7 +23,15 @@ function FileInput({ setData }) {
       const worksheet = workbook.Sheets[sheetName];
       const jsonData = XLSX.utils.sheet_to_json(worksheet);
 
-      setData(jsonData);
+       const sitesObject = jsonData.reduce((acc, site) => {
+        if (site.CHAVE_METRO) {
+          acc[site.CHAVE_METRO] = site;
+        }
+        return acc;
+      }, {});
+
+      // setData(jsonData);
+      console.log("Dados do Excel:", sitesObject);
     };
 
     reader.readAsArrayBuffer(file);
@@ -41,9 +49,7 @@ function FileInput({ setData }) {
         onChange={handleFileSubmit}
         accept=".xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
       />
-      <span className="file-helper">
-        Apenas arquivos .xlsx são aceitos
-      </span>
+      <span className="file-helper">Apenas arquivos .xlsx são aceitos</span>
     </div>
   );
 }
