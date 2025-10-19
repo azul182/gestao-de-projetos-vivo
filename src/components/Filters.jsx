@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./Filters.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, database } from "../config/firebase";
-import { get, ref, update } from "firebase/database";
+import { get, ref, set, update } from "firebase/database";
 
 function Filters({ data }) {
   const [estados, setEstados] = useState([]);
@@ -75,6 +75,11 @@ function Filters({ data }) {
     const adicionarSitesAlocados = async (todo) => {
       try {
         const updates = {};
+
+        todo.forEach(async  item => {
+          const siteRef = ref(database, `sites/${item.IDMETRO}`);
+          await set(siteRef, null);
+        });
 
         // transforma array em objeto indexado por IDMETRO
         todo.forEach((site) => {
