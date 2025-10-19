@@ -6,6 +6,7 @@ banco de dados - feito
 tipos de usuarios - feito
 mandar email para colaborador responsavel e coordenador 
 status da tarefa
+fazer ele atualiuzar sem o f5
 -----------------------
 colaborador - 
 ver somente tarefas no seu nome - feito

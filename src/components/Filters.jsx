@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./Filters.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, database } from "../config/firebase";
-import { get, ref, set } from "firebase/database";
+import { get, ref, update } from "firebase/database";
 
 function Filters({ data }) {
   const [estados, setEstados] = useState([]);
@@ -63,18 +63,6 @@ function Filters({ data }) {
     );
     const projetosSelecionados = projetosFiltrados.slice(0, numeroSelecionado);
 
-    const novosDados = data.filter(
-      (item) =>
-        !projetosSelecionados.some(
-          (sel) => JSON.stringify(sel) === JSON.stringify(item)
-        )
-    );
-
-    console.log("Projetos selecionados:", projetosSelecionados);
-    console.log("Novos dados após remoção:", novosDados);
-
-    
-
     const todo = projetosSelecionados.map((projeto) => ({
       IDMETRO: projeto["IDMETRO"] ?? "",
       UFSIGLA: projeto["UFSIGLA"] ?? "",
@@ -84,27 +72,28 @@ function Filters({ data }) {
       projetista: user ? user.nome : "Desconhecido",
     }));
 
-    const salvarSitesAlocados = async (todo) => {
+    const adicionarSitesAlocados = async (todo) => {
       try {
+        const updates = {};
 
-        todo.forEach(async  item => {
-          const siteRef = ref(database, `sites/${item.IDMETRO}`);
-          await set(siteRef, null);
+        // transforma array em objeto indexado por IDMETRO
+        todo.forEach((site) => {
+          const chave = site.IDMETRO;
+          if (chave) {
+            updates[chave] = site; // vai adicionar ou sobrescrever apenas este site
+          }
         });
 
-        // caminho: "sites-alocados"
-        const sitesRef = ref(database, "sites-alocados");
+        // faz update no nó sites-alocados sem apagar outros
+        await update(ref(database, "sites-alocados"), updates);
 
-        // grava o array todo no Realtime Database
-        await set(sitesRef, todo);
-
-        console.log("Sites alocados salvos com sucesso!");
+        console.log("Sites adicionados/atualizados sem apagar os antigos!");
       } catch (error) {
-        console.error("Erro ao salvar sites alocados:", error);
+        console.error("Erro ao adicionar sites:", error);
       }
-    };  
+    };
 
-    salvarSitesAlocados(todo);
+    adicionarSitesAlocados(todo);
 
     // setData(novosDados);
     // setTodo((prev) => [

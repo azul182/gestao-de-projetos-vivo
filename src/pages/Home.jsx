@@ -53,7 +53,7 @@ function Home() {
 
   const objToArray = (obj) => {
     return Object.entries(obj).map(([, value]) => ({
-      IDMETRO: value.IDMETRO || "",
+      IDMETRO: value.IDMETRO || value.CHAVE_METRO|| "",
       UFSIGLA: value.UFSIGLA || "",
       MUNICIPIO: value.MUNICIPIO || "",
       TOPOLOGIA: value.TOPOLOGIA_METRO || value.TOPOLOGIA || "",
